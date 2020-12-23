@@ -17,10 +17,27 @@ process_module = os.path.join(corb_base_path, 'tables.js')
 def execute(arguments) :
     schema = arguments.schema
 
+    # extract include (optinal) tables from argument list
+    if 'include_tables' in vars(arguments).keys() :
+        include_tables = arguments.include_tables
+    else :
+        include_tables = None
+
+    # extract exclude (optional) tables from argument list
+    if 'exclude_tables' in vars(arguments).keys() :
+        exclude_tables = arguments.exclude_tables
+    else :
+        exclude_tables = None
+
     tables = get_tables_from_schema(schema, arguments)
 
     for table in tables :
-        table_extractor.extract(schema, table, arguments)
+        if ((include_tables is None and exclude_tables is None) 
+            or (include_tables is not None and table in include_tables) 
+            or (exclude_tables is not None and table not in exclude_tables)) :
+            table_extractor.extract(schema, table, arguments)
+        else :
+            print("Skipping table: " + table)
 
 def get_tables_from_schema(schema, arguments) :
     table_file = os.path.join(arguments.data_directory, 'tmp', 'tables.csv')
