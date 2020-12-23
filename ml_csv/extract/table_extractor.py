@@ -6,7 +6,7 @@ import ml_csv.extract.corb_resources.table_extract as corb_base
 corbCommandStart = ['java',
                     '-server',
                     '-cp',
-                    '.:marklogic-xcc-10.0.4.jar:marklogic-corb-2.4.6.jar'
+                    '.:marklogic-xcc-10.0.5.jar:marklogic-corb-2.4.6.jar'
                    ]
 
 corbCommandEnd = ['com.marklogic.developer.corb.Manager']

@@ -4,7 +4,7 @@ import csv
 from .. import table_extractor
 import ml_csv.extract.corb_resources.tables_to_extract as corb_base
 
-corbCommandStart = ['java', '-Xmx80g', '-XX:+UseConcMarkSweepGC', '-server', '-cp', '.:marklogic-xcc-10.0.4.jar:marklogic-corb-2.4.6.jar']
+corbCommandStart = ['java', '-server', '-cp', '.:marklogic-xcc-10.0.5.jar:marklogic-corb-2.4.6.jar']
 csvExtractCommandStart = corbCommandStart + ['-DOPTIONS-FILE=configured-csv-extract/csv-extract.options']
 
 corbCommandEnd = ['com.marklogic.developer.corb.Manager']
@@ -25,7 +25,7 @@ def execute(arguments) :
 def get_tables_from_schema(schema, arguments) :
     table_file = os.path.join(arguments.data_directory, 'tmp', 'tables.csv')
 
-
+    
     if 'table_filter' in vars(arguments).keys() :
         table_filter = arguments.table_filter
     else :
