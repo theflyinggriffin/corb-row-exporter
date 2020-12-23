@@ -24,19 +24,24 @@ def execute(arguments) :
 def get_tables_from_schema(schema, arguments) :
     table_file = os.path.join(arguments.data_directory, 'tmp', 'tables.csv')
 
-    extract_table_list(schema, arguments.corb_options, table_file)
 
+    if 'table_filter' in vars(arguments).keys() :
+        table_filter = arguments.table_filter
+    else :
+        table_filter = None
+
+    extract_table_list(schema, table_filter, arguments.corb_options, table_file)
 
     tables = []
 
     with open(table_file, 'rt') as csvfile:
         spamreader = csv.reader(csvfile, delimiter=',', quotechar='"')
         for row in spamreader:
-            tables.append(row[0])
+            tables.append(row[1])
 
     return tables
 
-def extract_table_list(schema, corb_options, table_file) :
+def extract_table_list(schema, table_filter, corb_options, table_file) :
     options = []
 
     options.append('-DOPTIONS-FILE=' + corb_options)
@@ -46,7 +51,10 @@ def extract_table_list(schema, corb_options, table_file) :
 
     options.append("-DPROCESS-MODULE=" + process_module + "|ADHOC")
     options.append("-DPROCESS-TASK=com.marklogic.developer.corb.ExportBatchToFileTask")
-    options.append("-DURIS-MODULE.schema=" + schema)
+    options.append("-DPROCESS-MODULE.schema=" + schema)
+    
+    if table_filter is not None :
+        options.append("-DPROCESS-MODULE.table_filter=" + table_filter)
 
     options.append('-DBATCH-SIZE=1')
     options.append('-DTHREAD-COUNT=1')
