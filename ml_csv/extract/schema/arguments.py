@@ -10,15 +10,15 @@ def add_subparser(parser) :
     table_group = schema_parser.add_argument_group(title='Table Management', description='Filter tables to include in the extract')
     table_mux_group = table_group.add_mutually_exclusive_group()
 
-    table_mux_group.add_argument('--include-tables', nargs='+', metavar='TABLE', action='store', help='a table to include in the extract, only used with SCHEMA')
-    table_mux_group.add_argument('--exclude-tables', nargs='+', metavar='TABLE', action='store', help='a table to exclude from the extract, only used with SCHEMA')
+    table_mux_group.add_argument('--include-tables', nargs='+', metavar='TABLE', action='store', help='a table to include in the extract')
+    table_mux_group.add_argument('--exclude-tables', nargs='+', metavar='TABLE', action='store', help='a table to exclude from the extract')
     table_mux_group.add_argument('--table-filter', action='store', help='a filter to include/exclude tables in the extract')
 
     # Document filtering options
     document_group = schema_parser.add_argument_group(title='Document Management', description='Filter documents to include in the qurery using collections or CTS queries')
 
-    document_group.add_argument('--include-collections', nargs='+', metavar='COLLECTION', action='store', help='a collection to include data from in the extract, only used with SCHEMA')
-    document_group.add_argument('--exclude-collections', nargs='+', metavar='COLLECTION', action='store', help='a collection to exclude data from extract, only used with SCHEMA')
+    document_group.add_argument('--include-collections', nargs='+', metavar='COLLECTION', action='store', help='a collection to include data from in the extract')
+    document_group.add_argument('--exclude-collections', nargs='+', metavar='COLLECTION', action='store', help='a collection to exclude data from extract')
     #document_group.add_argument('--document-filter', action='store', help='a filter to include/exclude documents in the extract')
 
     # corb  options

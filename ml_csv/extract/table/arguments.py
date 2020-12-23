@@ -10,8 +10,8 @@ def add_subparser(parser) :
     # Document filtering options
     document_group = table_parser.add_argument_group(title='Document Management', description='Filter documents to include in the qurery using collections or CTS queries')
 
-    document_group.add_argument('--include-collections', nargs='+', metavar='COLLECTION', action='store', help='a collection to include data from in the extract, only used with SCHEMA')
-    document_group.add_argument('--exclude-collections', nargs='+', metavar='COLLECTION', action='store', help='a collection to exclude data from extract, only used with SCHEMA')
+    document_group.add_argument('--include-collections', nargs='+', metavar='COLLECTION', action='store', help='a collection to include data from in the extract')
+    document_group.add_argument('--exclude-collections', nargs='+', metavar='COLLECTION', action='store', help='a collection to exclude data from extract')
     #document_group.add_argument('--document-filter', action='store', help='a filter to include/exclude documents in the extract')
 
     # corb  options
