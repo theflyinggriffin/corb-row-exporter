@@ -1,4 +1,5 @@
 import os
+import subprocess
 import csv
 from .. import table_extractor
 import ml_csv.extract.corb_resources.tables_to_extract as corb_base
@@ -60,4 +61,6 @@ def extract_table_list(schema, table_filter, corb_options, table_file) :
     options.append('-DTHREAD-COUNT=1')
 
     command = corbCommandStart + options + corbCommandEnd
-    print(command)
+    #print(command)
+    subprocess.call(command)
+

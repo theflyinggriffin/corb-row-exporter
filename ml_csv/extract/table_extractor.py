@@ -1,4 +1,5 @@
 import os
+import subprocess
 import sys
 import ml_csv.extract.corb_resources.table_extract as corb_base
 
@@ -49,4 +50,5 @@ def extract(schema, table, arguments) :
         options.append("-DURIS-MODULE.excludeCollections=" + ','.join(arguments.exclude_collections))
 
     command = corbCommandStart + options + corbCommandEnd
-    print(command)
+    #print(command)
+    subprocess.call(command)
