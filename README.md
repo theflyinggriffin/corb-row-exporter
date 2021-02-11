@@ -47,7 +47,3 @@ or
 ```
 python ml-csv.py extract table --help
 ```
-
-## Limitations
-
-The MarkLogic CSV Extractor currently only works on Linux based systems due to the difference in how Java expects the classpath parameter to be passed.
