@@ -1,12 +1,15 @@
 import os
+import platform
 import subprocess
 import sys
 import ml_csv.extract.corb_resources.table_extract as corb_base
 
+classpath_separator = ";" if platform.system() == "Windows" else ":"
+
 corbCommandStart = ['java',
                     '-server',
                     '-cp',
-                    '.:marklogic-xcc-10.0.5.jar:marklogic-corb-2.4.6.jar'
+                    classpath_separator.join(['.', 'marklogic-xcc-10.0.5.jar', 'marklogic-corb-2.4.6.jar'])
                    ]
 
 corbCommandEnd = ['com.marklogic.developer.corb.Manager']
