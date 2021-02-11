@@ -13,10 +13,11 @@ results = op.fromView(schema, table)
   .map(row => {
     return Object.values(row)
       .map(cell => {
-          if(cell.includes("\"") || cell.includes("\n") || cell.includes(",")) {
-            return "\"" + cell.replace(quoteregex, "\"\"") + "\""
+          var cell_string = String(cell)
+          if(cell_string.includes("\"") || cell_string.includes("\n") || cell_string.includes(",")) {
+            return "\"" + cell_string.replace(quoteregex, "\"\"") + "\""
           } else {
-            return cell
+            return cell_string
           }
         }
       )
